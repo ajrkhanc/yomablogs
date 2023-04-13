@@ -1,0 +1,21 @@
+<% include ./_cpanelHeader.ejs%>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+                <%for(var u of cats){%>
+                <tr>
+                    <td></td>
+                    <td><%= u.Name %></td>
+                    <!--TODO Later Edit Category and its posts-->
+                    <td><a class="btn btn-primary" href="/controlpanel/categories/edit/<%= u.Name %>">Edit</a></td>
+                    <td><a class="btn btn-danger" href="/controlpanel/categories/delete/<%= u.Name %>">Delete</a></td>
+                </tr>
+            <%}%>
+            </tbody>
+        </table>
+<% include ./_cpanelFooter.ejs%>

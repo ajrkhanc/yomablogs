@@ -1,0 +1,65 @@
+<% include ./_cpanelHeader.ejs%>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Title</th>       
+        <th>Category</th>        
+        <th>Author</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% var i = 1; %>
+    <%for(var p of posts){%>
+    <tr>
+        <td><%= i %></td>
+        <td id="cp"><%= p.Title %></td>     
+        <td><%= p.category %></td>        
+        <td><%= p.Author %></td>
+        <td><%= p.ModifiedDate %></td>
+        <td><a class="btn btn-primary" href="/controlpanel/posts/edit/<%= p._id %>">Edit</a></td>
+        <td><a class="btn btn-primary postdelete" href="/controlpanel/posts/delete/<%= p._id %>">Delete</a></td>
+        <%if(p.isPublished == '0'){%>
+        <td><a class="btn btn-primary" href="/controlpanel/posts/publish/<%= p.posturl %>">Publish Post</a></td>
+        <%}else if(p.isPublished == '1'){%>
+        <td><a class="btn btn-primary" href="/controlpanel/posts/unpublish/<%= p.posturl %>">Unpublish Post</a></td>
+        <%}%>
+        <input type="text" hidden id="posturl" value="<%= p.posturl %>">
+    </tr>
+    <% i++; %>
+    <%}%>
+    </tbody>
+</table>
+<div class="pagination">
+    <% if (pages > 0) { %>
+        <ul class="pagination text-center">
+            <% if (current == 1) { %>
+                <li class="disabled"><a>First</a></li>
+            <% } else { %>
+                <li><a href="/controlpanel/posts?page=1">First</a></li>
+            <% } %>
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+                <li class="disabled"><a>...</a></li>
+            <% } %>
+            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                <% if (i == current) { %>
+                    <li class="active"><a><%= i %></a></li>
+                <% } else { %>
+                    <li><a href="/controlpanel/posts?page=<%= i %>"><%= i %></a></li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pages) { %>
+                    <li class="disabled"><a>...</a></li>
+                <% } %>
+            <% } %>
+            <% if (current == pages) { %>
+                <li class="disabled"><a>Last</a></li>
+            <% } else { %>
+                <li><a href="/controlpanel/posts?page=<%= pages %>">Last</a></li>
+            <% } %>
+        </ul>
+    <% } %>
+</div>
+
+<% include ./_cpanelFooter.ejs%>

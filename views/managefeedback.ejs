@@ -1,0 +1,28 @@
+<% include ./_cpanelHeader.ejs%>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>User name</th>
+        <th>Commment</th>
+        <th>Blog Slug</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%for(var f of feedback){%>
+    <tr>
+        <td></td>
+        <td><%= f.user %></td>
+        <td><%= f.comment %></td>
+        <td><%= f.post %></td>
+        <%if(f.status == '0'){%>
+            <td><a class="btn btn-primary" href="/controlpanel/feedback/publish/<%= f._id %>">Publish Feedback to Website</a></td>
+            <%}else{%>
+            <td><a class="btn btn-primary" href="/controlpanel/feedback/unpublish/<%= f._id %>">Remove Feedback from Website</a></td>
+            <%}%>
+    </tr>
+    <%}%>
+    </tbody>
+</table>
+
+<% include ./_cpanelFooter.ejs%>
