@@ -22,6 +22,15 @@ var postSchema = new Schema({
         type: String,
         default : '#'
     },
+    Keywords: {
+        type: String,
+        default : '#'
+    },
+
+    Schema: {
+        type: String,
+        default : '#'
+    },
 
     Author:{
         type: String,

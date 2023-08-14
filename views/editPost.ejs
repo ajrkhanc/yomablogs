@@ -11,27 +11,43 @@
                 </label>
                 <div class="col-sm-10"> <input type="text" name="title" class="form-control boxed"
                         value="<%= post.Title%>" placeholder="" required>
-                    </div>
+                </div>
             </div>
             <div class="form-group row"> <label class="col-sm-2 form-control-label text-xs-right">
-                Slug:
-            </label>
-            <div class="col-sm-10">
-                    <input class="form-control boxed" type="text"  name="posturl" value="<%=post.posturl%>">
+                    Slug:
+                </label>
+                <div class="col-sm-10">
+                    <input class="form-control boxed" type="text" name="posturl" value="<%=post.posturl%>">
                 </div>
-        </div>
+            </div>
             <div class="form-group row"> <label class="col-sm-2 form-control-label text-xs-right">
                     Content:
                 </label>
                 <div class="col-sm-10"> <textarea id="editor" name="content" class="form-control boxed" cols="20"
-                    rows="10"><%= post.Content%></textarea> </div>
+                        rows="10"><%= post.Content%></textarea> </div>
             </div>
+
             <div class="form-group row"> <label class="col-sm-2 form-control-label text-xs-right">
                     description:
                 </label>
                 <div class="col-sm-10"> <textarea name="description" class="form-control boxed" cols="20"
                         rows="10"><%= post.Description%></textarea> </div>
             </div>
+
+            <div class="form-group row"> <label class="col-sm-2 form-control-label text-xs-right">
+                Keywords:
+            </label>
+            <div class="col-sm-10"> <textarea name="keywords" class="form-control boxed" cols="20"
+                    rows="10"><%= post.Keywords%></textarea> </div>
+        </div>
+
+        <div class="form-group row"> <label class="col-sm-2 form-control-label text-xs-right">
+            Schema:
+        </label>
+        <div class="col-sm-10"> <textarea name="schema" class="form-control boxed" cols="20"
+                rows="10"><%= post.Schema%></textarea> </div>
+    </div>
+
             <div class="form-group row"> <label class="col-sm-2 form-control-label text-xs-right">
                     Category:
                 </label>
@@ -39,21 +55,27 @@
                 <div class="col-sm-10">
                     <select multiple name="category" class="c-select form-control boxed">
                         <option>Select Category</option>
-                        <%var categoryArrayInPost = post.category;%>
+                        <%var categoryArrayInPost=post.category;%>
 
-                        <%if(categoryArrayInPost == null){%>
-                            <%for(c of cats){%>
-                            <option value="<%=c.Caturl%>"><%=c.Name%></option>
-                            <%}%>
-                        <%} else{%>                        
-                        <%for(c of cats){%>
-                        <%if(categoryArrayInPost.indexOf(c.Caturl) > -1){%>
-                        <option value="<%=c.Caturl%>" selected><%=c.Name%></option>
-                        <%}else{%>
-                        <option value="<%=c.Caturl%>"><%=c.Name%></option>
-                        <%}%>
-                        <%}%>  
-                        <%}%>                       
+                            <%if(categoryArrayInPost==null){%>
+                                <%for(c of cats){%>
+                                    <option value="<%=c.Caturl%>">
+                                        <%=c.Name%>
+                                    </option>
+                                    <%}%>
+                                        <%} else{%>
+                                            <%for(c of cats){%>
+                                                <%if(categoryArrayInPost.indexOf(c.Caturl)> -1){%>
+                                                    <option value="<%=c.Caturl%>" selected>
+                                                        <%=c.Name%>
+                                                    </option>
+                                                    <%}else{%>
+                                                        <option value="<%=c.Caturl%>">
+                                                            <%=c.Name%>
+                                                        </option>
+                                                        <%}%>
+                                                            <%}%>
+                                                                <%}%>
 
                     </select>
                 </div>
@@ -102,7 +124,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/jodit@3.24.2/build/jodit.es2018.min.css" />
     <script src="https://unpkg.com/jodit@3.24.2/build/jodit.es2018.min.js"></script>
- 
+
     <script>
         var editor = Jodit.make('#editor');
         var inserteddate = document.getElementById('inserteddate').value;
